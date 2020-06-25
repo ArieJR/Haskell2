@@ -1,7 +1,18 @@
+import System.IO  
+import Control.Monad
 import qualified Data.List as List
 import qualified Data.List.Split as Split
 import qualified Data.Char as Char
 
+main = do
+   let file = "data.txt"
+   contents <- readFile file
+   putStrLn contents
+   let out = runLengthEncode contents
+   putStrLn out
+   let filecomp = "compressed.txt"
+   writeFile filecomp out
+	
 --1a
 runLengthEncode :: String -> String
 runLengthEncode = concat . map (compressRun) . List.group
